@@ -11,6 +11,13 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
+  resolve: {
+    extensions: ['.js'],
+    alias: {
+      '@': 'src',
+      '@core': 'src/core',
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
