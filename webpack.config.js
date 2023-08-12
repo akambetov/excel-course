@@ -14,11 +14,19 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.scss'],
     alias: {
       '@': 'src',
       '@core': 'src/core',
     },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
+    ],
   },
   plugins: [
     new webpack.ProgressPlugin(),
