@@ -7,12 +7,15 @@ const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === 'production';
 const isDev = !isProd;
 
+const filename = (ext) =>
+  isDev ? `bundle.${ext}` : `bundle.[contenthash].${ext}`;
+
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: isDev ? 'development' : 'production',
   entry: './index.js',
   output: {
-    filename: 'bundle.[contenthash].js',
+    filename: filename('js'),
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
@@ -54,8 +57,11 @@ module.exports = {
       patterns: [{ from: 'favicon.ico', to: path.resolve(__dirname, 'dist') }],
     }),
     new MiniCssExtractPlugin({
-      filename: 'bundle.[contenthash].css',
+      filename: filename('css'),
     }),
   ],
   devtool: isDev ? 'source-map' : false,
+  devServer: {
+    port: 3000,
+  },
 };
