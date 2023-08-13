@@ -4,9 +4,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
+const isProd = process.env.NODE_ENV === 'production';
+const isDev = !isProd;
+
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  mode: 'development',
+  mode: isDev ? 'development' : 'production',
   entry: './index.js',
   output: {
     filename: 'bundle.[contenthash].js',
@@ -42,6 +45,10 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.html',
+      minify: {
+        removeComments: isProd,
+        collapseWhitespace: isProd,
+      },
     }),
     new CopyWebpackPlugin({
       patterns: [{ from: 'favicon.ico', to: path.resolve(__dirname, 'dist') }],
@@ -50,4 +57,5 @@ module.exports = {
       filename: 'bundle.[contenthash].css',
     }),
   ],
+  devtool: isDev ? 'source-map' : false,
 };
