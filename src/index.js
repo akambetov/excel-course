@@ -1,8 +1,8 @@
-import './module';
+import { Excel } from './components/excel/Excel';
 import './scss';
 
-const one = { one: 1 };
-const two = { two: 2 };
-const oneTwo = { ...one, ...two };
+const excel = new Excel('#app', {
+  components: [],
+});
 
-console.log('Index', oneTwo);
+console.log('Excel', excel);

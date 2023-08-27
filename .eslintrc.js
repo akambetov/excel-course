@@ -10,7 +10,8 @@ module.exports = {
   },
   rules: {
     'object-curly-spacing': ['error', 'always'],
-    'no-unused-vars': ['warn'],
+    'no-unused-vars': 'warn',
+    'require-jsdoc': 'off',
   },
   extends: ['eslint:recommended', 'google'],
 };
