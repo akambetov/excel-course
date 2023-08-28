@@ -1,9 +1,19 @@
 import { ExcelCompnent } from '../../core/ExcelComponent';
 
 export class Header extends ExcelCompnent {
+  static className = 'excel__header';
+
   toHTML() {
-    // вызов родительского метода
-    // return super.toHTML();
-    return `<h1>Header</h1>`;
+    return `
+      <input type="text" class="input" value="Новая таблица" />
+      <div>
+        <div class="button">
+          <span class="material-symbols-outlined">delete</span>
+        </div>
+        <div class="button">
+          <span class="material-symbols-outlined">logout</span>
+        </div>
+      </div
+    `;
   }
 }
