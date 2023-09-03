@@ -31,6 +31,14 @@ class Dom {
     return this;
   }
 
+  on(eventName, callback) {
+    this.$nativeEl.addEventListener(eventName, callback);
+  }
+
+  off(eventName, callback) {
+    this.$nativeEl.removeEventListener(eventName, callback);
+  }
+
   clear() {
     this.html('');
 
